@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เซิร์ฟเวอร์ | Nitro Rush Race Club</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      cursor: url('cursor/cursor.png') 16 16, auto;
+    }
+    a:hover,
+    button:hover {
+      cursor: url('cursor/cursor.png') 16 16, auto;
+    }
+    h1 {
+      color: #ff3300;
+      margin-top: 40px;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      filter: blur(8px) brightness(50%);
+    }
+
+    .server-box {
+      background-color: #111;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 51, 0, 0.2);
+    }
+
+    .server-box h2 {
+      margin: 0 0 10px;
+      color: #ff3300;
+    }
+
+    .server-box p {
+      margin: 0 0 15px;
+    }
+
+    .server-box a {
+      background-color: #ff3300;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .server-box a:hover {
+      background-color: #cc2900;
+    }
+
+    .back-button {
+      margin: 40px 0 60px;
+    }
+
+    .back-button a {
+      background-color: #333;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .back-button a:hover {
+      background-color: #555;
+    }
+
+    footer {
+      background-color: rgba(17, 17, 17, 0.5); /* สีเทาใส 50% */
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+      width: 100%;
+      margin-top: 501px; /* เว้นระยะจาก content ข้างบน */
+    }
+    /* Smooth Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s ease; /* smooth fade out */
+}
+
+.loading-logo {
+  text-align: center;
+  animation: float 2s ease-in-out infinite;
+}
+
+.loading-logo img {
+  width: 100px;
+  animation: spin 3s linear infinite;
+  filter: drop-shadow(0 0 10px #ff3300);
+}
+
+.loading-logo p {
+  color: #ff3300;
+  font-size: 1.2em;
+  margin-top: 15px;
+  letter-spacing: 2px;
+  animation: fadeIn 1.5s infinite alternate;
+}
+
+/* Logo float up and down */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Fade-in text */
+@keyframes fadeIn {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+    .volume-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 12px 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#volume-slider {
+  width: 120px;
+  height: 8px;
+  appearance: none;
+  background: #ccc;
+  border-radius: 5px;
+  outline: none;
+  vertical-align: middle;
+}
+
+/* สำหรับ Chrome, Edge */
+#volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 0px; /* ✅ ปรับให้วงกลมอยู่กลางแถบ */
+}
+
+/* สำหรับ Firefox */
+#volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+  </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loading-logo">
+      <img src="logo/Nitro logo.png" alt="Loading..." />
+    </div>
+  </div>
+
+  <!-- พื้นหลังวิดีโอ -->
+  <video autoplay loop muted playsinline class="video-bg">
+    <source src="video/2025-03-19-084047736.mp4" type="video/mp4" />
+    วิดีโอไม่รองรับในเบราว์เซอร์ของคุณ
+  </video>
+
+  <h1>📦 ไฟล์ดาวโหลดมอดในเซิฟ 📦</h1>
+
+  <div class="server-box">
+    <h2>🚗 Content Manager 🚗</h2>
+    <p>ตัวเข้าเกมออนไลน์</p>
+    <a href="https://assettocorsa.club/content-manager.html" target="_blank">Download</a>
+  </div>
+
+  <div class="server-box">
+    <h2>🚗 Traffic Pack 🚗</h2>
+    <p>แพ็กการจราจรสำหรับใช้ในเซิร์ฟเวอร์</p>
+    <a href="https://drive.google.com/file/d/1NhWGlVrOed-hZ45wjp4hMWmE5ucR1Itz/view?usp=sharing" target="_blank">Download</a>
+  </div>
+
+  <div class="server-box">
+    <h2>🚗 Car Pack 🚗</h2>
+    <p>แพ็กชุดรถสำหรับใช้ในเซิร์ฟเวอร์</p>
+    <a href="https://drive.google.com/drive/folders/1WgBNyFD1rPQAIBi_Sz7fwBIQCgD4K5DB?usp=sharing" target="_blank">Download</a>
+  </div>
+
+  <div class="server-box">
+    <h2>🌄 Track SRP 🌄</h2>
+    <p>เแมพทางด่วน Shutoko Revival Project</p>
+    <a href="https://shutokorevivalproject.com/" target="_blank">Download</a>
+  </div>
+
+  <div class="back-button">
+    <a href="index.html">⬅️ Black to home</a>
+  </div>
+
+  <!-- Music Audio Player (hidden) -->
+  <audio id="bg-music" autoplay loop>
+    <source src="sound-bg/Drink A Yak.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <!-- Volume Control UI -->
+  <div class="volume-container">
+    <span style="color: white; font-weight: bold;">
+      🔊 Volume
+    </span>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Nitro Rush Race Club | TH | All rights reserved.</p>
+  </footer>
+
+  <script>
+    window.addEventListener("load", function () {
+  const loadingScreen = document.getElementById("loading-screen");
+
+  // แทนที่จะ fade-out ทันที ให้หน่วงเวลาไว้ 30 วิ
+  setTimeout(() => {
+    loadingScreen.style.opacity = "0"; // fade out
+
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+    }, 800); // รอ fade out เสร็จ
+  }, 1000); // <<< หน่วงเวลาไว้ 30 วินาที (30000 ms)
+}); 
+  const music = document.getElementById("bg-music");
+  const volumeSlider = document.getElementById("volume-slider");
+
+  // ปรับระดับเสียงตาม slider
+  volumeSlider.addEventListener("input", () => {
+    music.volume = volumeSlider.value;
+  });
+
+  // เล่นเพลงอัตโนมัติหลังโหลดหน้า
+  window.addEventListener("DOMContentLoaded", () => {
+    music.volume = volumeSlider.value;
+
+    // บางเบราว์เซอร์ต้องให้ user มี interaction ก่อนจึงจะเล่นอัตโนมัติได้
+    music.play().catch(() => {
+      document.body.addEventListener("click", () => {
+        music.play();
+      }, { once: true });
+    });
+  });
+  </script>
+
+
+</body>
+</html>
