@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>เซิร์ฟเวอร์ | Nitro Rush Race Club</title>
+  <title>Leaderboard | Nitro Rush</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
+      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+      color: white;
       cursor: url('cursor/cursor.png') 16 16, auto;
+      overflow-x: hidden;
     }
-    a:hover,
-    button:hover {
-      cursor: url('cursor/cursor.png') 16 16, auto;
-    }
+
     h1 {
       color: #ff3300;
-      margin-top: 40px;
+      text-align: center;
+      margin-top: 100px;
     }
+
     .video-bg {
       position: fixed;
       top: 0;
@@ -32,69 +31,142 @@
       z-index: -1;
       filter: blur(8px) brightness(50%);
     }
-    .back-button {
-      margin: 40px 0 60px;
-    }
-    .back-button a {
-      background-color: #333;
-      color: white;
-      padding: 10px 25px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
-    .back-button a:hover {
-      background-color: #555;
-    }
-    footer {
-      background-color: rgba(17, 17, 17, 0.5); /* สีเทาใส 50% */
-      color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 0.9em;
-      width: 100%;
-      margin-top: 60px; /* เว้นระยะจาก content ข้างบน */
-    }
-    #loading-screen {
+
+    .top-bar {
+      background-color: rgba(17, 17, 17, 0.5); /* ✅ สีดำ + ความโปร่งใส 50% */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #000;
-      z-index: 9999;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo img {
+      height: 45px;
+    }
+
+    .nav-links {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 1;
-      transition: opacity 0.8s ease;
+      gap: 20px;
     }
-    .loading-logo {
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      background-color: #ff3300;
+    }
+
+    .discord-button {
+      background-color: #ff3300;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin-right: 50px; /* ✅ เพิ่มตรงนี้ เพื่อขยับเข้าซ้าย */
+    }
+
+    .discord-button:hover {
+      background-color: #cc2900;
+    }
+
+    #leaderboard {
+      width: 95%;
+      max-width: 1200px;
+      border-collapse: collapse;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 15px;
+    }
+
+    #leaderboard th, #leaderboard td {
+      padding: 14px 12px;
+      vertical-align: middle;
+    }
+
+    #leaderboard th {
+      background: #1a1a1a;
+      font-weight: bold;
+      color: #ccc;
       text-align: center;
-      animation: float 2s ease-in-out infinite;
     }
-    .loading-logo img {
-      width: 100px;
-      animation: spin 3s linear infinite;
-      filter: drop-shadow(0 0 10px #ff3300);
+
+    #leaderboard td {
+      background-color: #000;
+      text-align: center;
     }
-    .loading-logo p {
-      color: #ff3300;
-      font-size: 1.2em;
-      margin-top: 15px;
-      letter-spacing: 2px;
-      animation: fadeIn 1.5s infinite alternate;
+
+    #leaderboard tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
     }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+
+    .rank-icon {
+      display: inline-block;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 10px;
+      font-size: 0.9em;
+      font-family: 'Courier New', monospace;
     }
-    @keyframes fadeIn {
-      from { opacity: 0.3; }
-      to { opacity: 1; }
+
+    .rank-1 .rank-icon {
+      background: #ff0000e1;
+      color: white;
     }
+
+    .rank-2 .rank-icon {
+      background: #656565;
+      color: black;
+    }
+
+    .rank-3 .rank-icon {
+      background: #b74802;
+      color: black;
+    }
+
+    .player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.player-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.player-info-text .name {
+  font-weight: bold;
+  font-size: 1em;
+  color: #fff;
+}
+
+.player-info-text .title {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
     .volume-container {
       position: fixed;
       bottom: 100px;
@@ -107,6 +179,7 @@
       align-items: center;
       gap: 10px;
     }
+
     #volume-slider {
       width: 120px;
       height: 8px;
@@ -116,6 +189,7 @@
       outline: none;
       vertical-align: middle;
     }
+
     #volume-slider::-webkit-slider-thumb {
       appearance: none;
       width: 20px;
@@ -123,8 +197,8 @@
       background: #007bff;
       border-radius: 50%;
       cursor: pointer;
-      margin-top: 0px;
     }
+
     #volume-slider::-moz-range-thumb {
       width: 20px;
       height: 20px;
@@ -133,59 +207,64 @@
       cursor: pointer;
       border: none;
     }
-    table {
-      margin: auto;
-      border-collapse: collapse;
-      width: 90%;
-      max-width: 900px;
-      color: white;
-    }
-    th, td {
-      border: 1px solid #666;
-      padding: 10px;
-    }
-    th {
-      background: #222;
+
+    footer {
+      background-color: rgba(17, 17, 17, 0.5);
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+      width: 100%;
+      margin-top: 750px;
     }
   </style>
 </head>
 <body>
-  <div id="loading-screen">
-    <div class="loading-logo">
-      <img src="logo/Nitro logo.png" alt="Loading..." />
+  <video autoplay loop muted playsinline class="video-bg">
+    <source src="video/2025-03-19-084047736.mp4" type="video/mp4" />
+  </video>
+
+  <div class="top-bar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo/Nitro logo.png" alt="Nitro Rush Logo" />
+      </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="nav-links">
+        <a href="server.html">Servers</a>
+        <a href="download.html">Downloads</a>
+        <a href="howto.html">How To ต่างๆ </a>
+        <a href="leaderboard.html">leaderboard</a>
+        <a href="about.html">About</a>
+      </div>
+      <a href="https://discord.gg/nitro-rush-race" class="discord-button" target="_blank">Join Discord</a>
     </div>
   </div>
 
-  <video autoplay loop muted playsinline class="video-bg">
-    <source src="video/2025-03-19-084047736.mp4" type="video/mp4" />
-    วิดีโอไม่รองรับในเบราว์เซอร์ของคุณ
-  </video>
-
-  <h1>🚦 Leader Board 🚦</h1>
-  <h1>🚦 อัพเดทคะแนนทุกๆ 1 อาทิตย์ 🚦</h1>
+  <h1>🏁 Nitro Rush Leaderboard 🏁</h1>
 
   <table id="leaderboard">
-    <tr>
-      <th>Rank</th>
-      <th>Driver</th>
-      <th>Score</th>
-      <th>Title</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>High Score Car</th>
+        <th>Avg Speed</th>
+        <th>Top Speed</th>
+        <th>Total Time</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
   </table>
-
-  <div class="back-button">
-    <a href="index.html">⬅️ Back to home</a>
-  </div>
 
   <audio id="bg-music" autoplay loop>
     <source src="sound-bg/Drink A Yak.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <div class="volume-container">
-    <span style="color: white; font-weight: bold;">
-      🔊 Volume
-    </span>
+    <span style="color: white; font-weight: bold;">🔊 Volume</span>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" />
   </div>
 
@@ -193,24 +272,67 @@
     <p>&copy; 2025 Nitro Rush Race Club | TH | All rights reserved.</p>
   </footer>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
   <script>
-    // Loading screen fade out
-    window.addEventListener("load", function () {
-      const loadingScreen = document.getElementById("loading-screen");
-      setTimeout(() => {
-        loadingScreen.style.opacity = "0";
-        setTimeout(() => {
-          loadingScreen.style.display = "none";
-        }, 800);
-      }, 1000);
-    });
+    const firebaseConfig = {
+      apiKey: "AIzaSyD77xkijJ_gaC6h5Wjcy1pnjSDtyg0hIM4",
+      authDomain: "nitro-rush-th-1dad9.firebaseapp.com",
+      databaseURL: "https://nitro-rush-th-1dad9-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "nitro-rush-th-1dad9",
+      storageBucket: "nitro-rush-th-1dad9.appspot.com",
+      messagingSenderId: "367849925705",
+      appId: "1:367849925705:web:4443d447112ec27c3e6398",
+      measurementId: "G-9M085HRV9B"
+    };
 
-    // Volume logic
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    db.ref('/NitroRushTH').once('value')
+      .then(snapshot => {
+        const data = snapshot.val();
+        const tbody = document.querySelector("#leaderboard tbody");
+
+        if (data) {
+          const entries = Object.values(data).sort((a, b) => b.score - a.score);
+
+          entries.forEach((player, index) => {
+            const row = document.createElement("tr");
+            if (index === 0) row.classList.add('rank-1');
+            if (index === 1) row.classList.add('rank-2');
+            if (index === 2) row.classList.add('rank-3');
+
+            row.innerHTML = `
+              <td><span class="rank-icon">#${index + 1}</span></td>
+              <td>
+                <div class="player-info">
+                  <img src="${player.avatarUrl}" alt="avatar" />
+                  <div class="player-info-text">
+                    <span class="name">${player.personaname || 'Unknown'}</span>
+                    <span class="title">${player.AAName || '-'}</span>
+                  </div>
+                </div>
+              </td>
+              <td>${player.highscoredriverCar || '-'}</td>
+              <td>${Math.round(player.avgSpeed || 0)} km/h</td>
+              <td>${Math.round(player.topSpeed || 0)} km/h</td>
+              <td>${player.sessionDuration || 0} นาที</td>
+              <td>${player.score?.toLocaleString() || 0}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        }
+      });
+
     const music = document.getElementById("bg-music");
     const volumeSlider = document.getElementById("volume-slider");
+
     volumeSlider.addEventListener("input", () => {
       music.volume = volumeSlider.value;
     });
+
     window.addEventListener("DOMContentLoaded", () => {
       music.volume = volumeSlider.value;
       music.play().catch(() => {
@@ -219,36 +341,6 @@
         }, { once: true });
       });
     });
-
-    // Load leaderboard from JSON
-    fetch('./leaderboards.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-        return response.json();
-      })
-      .then(data => {
-        const leaderboard = document.getElementById("leaderboard");
-        const entries = Object.values(data).sort((a, b) => b.highestScore - a.highestScore);
-        entries.forEach((player, index) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${player.driverName}</td>
-            <td>${player.highestScore.toLocaleString()}</td>
-            <td>${player.rank}</td>
-          `;
-          leaderboard.appendChild(row);
-        });
-      })
-      .catch(err => {
-        console.error("\u274c Load error:", err);
-        const table = document.getElementById("leaderboard");
-        const row = document.createElement("tr");
-        row.innerHTML = `<td colspan="4">⚠️ Failed to load leaderboard data.</td>`;
-        table.appendChild(row);
-      });
   </script>
 </body>
 </html>

@@ -34,34 +34,83 @@
       filter: blur(8px) brightness(50%);
     }
 
-    .back-button {
-      margin: 40px 0 60px;
+    .top-bar {
+      background-color: rgba(17, 17, 17, 0.5); /* ✅ สีดำ + ความโปร่งใส 50% */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
-    .back-button a {
-      background-color: #333;
-      color: white;
-      padding: 10px 25px;
+    .logo img {
+      height: 45px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      background-color: #ff3300;
+    }
+
+    .discord-button {
+      background-color: #ff3300;
+      padding: 8px 16px;
       border-radius: 5px;
       text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
-
-    .back-button a:hover {
-      background-color: #555;
-    }
-
-    footer {
-      background-color: rgba(17, 17, 17, 0.5); /* สีเทาใส 50% */
       color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 0.9em;
-      width: 100%;
-      margin-top: 60px; /* เว้นระยะจาก content ข้างบน */
+      font-weight: bold;
+      margin-right: 50px; /* ✅ เพิ่มตรงนี้ เพื่อขยับเข้าซ้าย */
     }
-    /* Smooth Loading Screen */
+
+    .discord-button:hover {
+      background-color: #cc2900;
+    }
+
+    h1 {
+      color: #ff3300;
+      margin-top: 100px;
+    }
+    .hero {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 30px 20px;
+      text-align: left;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 51, 0, 0.3);
+      line-height: 1.8;
+    }
+
+    .hero h2 {
+      color: #ff3300;
+    }
+
+    .hero ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .hero ul li {
+      margin-bottom: 10px;
+    }
+
+/* Smooth Loading Screen */
 #loading-screen {
   position: fixed;
   top: 0;
@@ -108,7 +157,7 @@
   from { opacity: 0.3; }
   to { opacity: 1; }
 }
-    .volume-container {
+.volume-container {
   position: fixed;
   bottom: 100px;
   right: 30px;
@@ -151,95 +200,108 @@
   cursor: pointer;
   border: none;
 }
+
+    footer {
+      background-color: rgba(17, 17, 17, 0.5);
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+      width: 100%;
+      margin-top: 322px;
+    }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
+  <video autoplay loop muted playsinline class="video-bg">
+    <source src="video/2025-03-19-084047736.mp4" type="video/mp4" />
+  </video>
+
+        <!-- Loading Screen -->
 <div id="loading-screen">
   <div class="loading-logo">
     <img src="logo/Nitro logo.png" alt="Loading..." />
   </div>
 </div>
 
-  <!-- พื้นหลังวิดีโอ -->
-  <video autoplay loop muted playsinline class="video-bg">
-    <source src="video/2025-03-19-084047736.mp4" type="video/mp4" />
-    วิดีโอไม่รองรับในเบราว์เซอร์ของคุณ
-  </video>
-
-  <h1>🚦 About 🚦</h1>
-
-  <div class="hero" style="max-width: 800px; margin: 0 auto; padding: 30px 20px; text-align: left; background-color: rgba(0,0,0,0.6); border-radius: 12px; box-shadow: 0 0 15px rgba(255, 51, 0, 0.3); line-height: 1.8;">
-    <h2 style="color: #ff3300;">Nitro Rush Race Club | TH</h2>
-    <p>เซิร์ฟเวอร์ Assetto Corsa สำหรับสายซิ่งตัวจริง🔥</p>
-    <p>ยินดีต้อนรับสู่โลกของการซิ่งบนทางด่วนญี่ปุ่น ที่คุณจะได้สัมผัสบรรยากาศสุดเท่สไตล์ JDM ทั้งกลางวันและกลางคืน ไม่ว่าจะขับชิลล์ หรือจะอัดโหด ๆ กับเพื่อน ๆ ที่นี่คือที่รวมตัวของนักซิ่งทั่วไทย!</p>
-  
-    <ul style="list-style: none; padding-left: 0;">
-      <li>🚗 รถ JDM หลากหลายรุ่น แต่งครบ สายหล่อ สายแรงมีหมด</li>
-      <li>🌉 แผนที่ทางด่วนญี่ปุ่นสมจริง ทั้ง loop C1 และอื่น ๆ</li>
-      <li>👥 เล่นหลายคนพร้อมกันในบรรยากาศสุดมันส์</li>
-      <li>🎮 เหมาะสำหรับทั้งมือใหม่และนักซิ่งมือโปร</li>
-    </ul>
-  
-    <p>ถ้าคุณหลงใหลในเสียงเครื่องยนต์ เส้นทางกลางเมือง และรถแต่งญี่ปุ่นสุดเท่ <strong>Nitro Rush Race Club | TH</strong> คือจุดหมายของคุณ</p>
-    <p style="font-weight: bold;">เปิดไฟ ปล่อยคลัทช์ แล้วเจอกันบนทางด่วน!</p>
+  <div class="top-bar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo/Nitro logo.png" alt="Nitro Rush Logo" />
+      </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="nav-links">
+        <a href="server.html">Servers</a>
+        <a href="download.html">Downloads</a>
+        <a href="howto.html">How To ต่างๆ </a>
+        <a href="leaderboard.html">leaderboard</a>
+        <a href="about.html">About</a>
+      </div>
+      <a href="https://discord.gg/nitro-rush-race" class="discord-button" target="_blank">Join Discord</a>
+    </div>
   </div>
+    <!-- Music Audio Player (hidden) -->
+<audio id="bg-music" autoplay loop>
+  <source src="sound-bg/Drink A Yak.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-<div class="back-button">
-  <a href="index.html">⬅️ Back to home</a>
+<h1>🚦 About 🚦</h1>
+
+<div class="hero">
+  <h2>Nitro Rush Race Club | TH</h2>
+  <p>เซิร์ฟเวอร์ Assetto Corsa สำหรับสายซิ่งตัวจริง🔥</p>
+  <p>ยินดีต้อนรับสู่โลกของการซิ่งบนทางด่วนญี่ปุ่น ที่คุณจะได้สัมผัสบรรยากาศสุดเท่สไตล์ JDM ทั้งกลางวันและกลางคืน ไม่ว่าจะขับชิลล์ หรือจะอัดโหด ๆ กับเพื่อน ๆ ที่นี่คือที่รวมตัวของนักซิ่งทั่วไทย!</p>
+
+  <ul>
+    <li>🚗 รถ JDM หลากหลายรุ่น แต่งครบ สายหล่อ สายแรงมีหมด</li>
+    <li>🌉 แผนที่ทางด่วนญี่ปุ่นสมจริง ทั้ง loop C1 และอื่น ๆ</li>
+    <li>👥 เล่นหลายคนพร้อมกันในบรรยากาศสุดมันส์</li>
+    <li>🎮 เหมาะสำหรับทั้งมือใหม่และนักซิ่งมือโปร</li>
+  </ul>
+
+  <p>ถ้าคุณหลงใหลในเสียงเครื่องยนต์ เส้นทางกลางเมือง และรถแต่งญี่ปุ่นสุดเท่ <strong>Nitro Rush Race Club | TH</strong> คือจุดหมายของคุณ</p>
+  <p style="font-weight: bold;">เปิดไฟ ปล่อยคลัทช์ แล้วเจอกันบนทางด่วน!</p>
 </div>
 
-  <!-- Music Audio Player (hidden) -->
-  <audio id="bg-music" autoplay loop>
-    <source src="sound-bg/Drink A Yak.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <!-- Volume Control UI -->
+  <!-- Volume -->
   <div class="volume-container">
-    <span style="color: white; font-weight: bold;">
-      🔊 Volume
-    </span>
+    <span style="color: white; font-weight: bold;">🔊 Volume</span>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" />
   </div>
 
   <footer>
     <p>&copy; 2025 Nitro Rush Race Club | TH | All rights reserved.</p>
   </footer>
-
-  <script>
-    window.addEventListener("load", function () {
-  const loadingScreen = document.getElementById("loading-screen");
-
-  // แทนที่จะ fade-out ทันที ให้หน่วงเวลาไว้ 30 วิ
-  setTimeout(() => {
-    loadingScreen.style.opacity = "0"; // fade out
-
-    setTimeout(() => {
-      loadingScreen.style.display = "none";
-    }, 800); // รอ fade out เสร็จ
-  }, 1000); // <<< หน่วงเวลาไว้ 30 วินาที (30000 ms)
-}); 
-  const music = document.getElementById("bg-music");
-  const volumeSlider = document.getElementById("volume-slider");
-
-  // ปรับระดับเสียงตาม slider
-  volumeSlider.addEventListener("input", () => {
-    music.volume = volumeSlider.value;
-  });
-
-  // เล่นเพลงอัตโนมัติหลังโหลดหน้า
-  window.addEventListener("DOMContentLoaded", () => {
-    music.volume = volumeSlider.value;
-
-    // บางเบราว์เซอร์ต้องให้ user มี interaction ก่อนจึงจะเล่นอัตโนมัติได้
-    music.play().catch(() => {
-      document.body.addEventListener("click", () => {
-        music.play();
-      }, { once: true });
-    });
-  });
-  </script>
+    <!-- Scripts -->
+    <script>
+      window.addEventListener("load", () => {
+        const loadingScreen = document.getElementById("loading-screen");
+        setTimeout(() => {
+          loadingScreen.style.opacity = "0";
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+          }, 800);
+        }, 1000);
+      });
+  
+      const music = document.getElementById("bg-music");
+      const volumeSlider = document.getElementById("volume-slider");
+  
+      volumeSlider.addEventListener("input", () => {
+        music.volume = volumeSlider.value;
+      });
+  
+      window.addEventListener("DOMContentLoaded", () => {
+        music.volume = volumeSlider.value;
+        music.play().catch(() => {
+          document.body.addEventListener("click", () => {
+            music.play();
+          }, { once: true });
+        });
+      });
+    </script>
 
 </body>
 </html>
